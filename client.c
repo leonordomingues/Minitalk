@@ -81,6 +81,5 @@ int	main(int ac, char **av)
 			sendsignal(convert_to_binary(character), pid);
 			i++;
 		}
-
 	}
 }
