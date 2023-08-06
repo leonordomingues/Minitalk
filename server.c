@@ -4,27 +4,28 @@ int	g = 0;
 
 int	reconvert_to_int(char *binary)
 {
-	int	power;
+	int	len;
 	int	i;
 	int	ascii;
 	int	n;
+	int	j;
 
-	power = 0;
+	len = 8;
 	ascii = 0;
-	while (binary[power] != '\0' && power < 8)
+	i = 0;
+	while (binary[i] != '\0' && i < len)
 	{
-		if (binary[power] == '1')
+		if (binary[i] == '1')
 		{
 			n = 1;
-			i = 0;
-			while (i < power)
+			j = len - 1;
+			while (j > i)
 			{
 				n *= 2;
-				i++;
+				j--;
 			}
 			ascii += n;
 		}
-		power++;
 	}
 	printf("%d\n", ascii);
 	return (ascii);
