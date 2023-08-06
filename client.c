@@ -31,11 +31,11 @@ int	*convert_to_binary(int ascii)
 	int	b;
 
 	b = 7;
-	binary = malloc(sizeof(int) * 8);
+	binary = malloc (sizeof(int) * 8);
 	while (ascii >= 0)
 	{
-		binary[b] = b % 2;
-		b /= 2;
+		binary[b] = ascii % 2;
+		ascii /= 2;
 		b--;
 	}
 	while (b >= 0)
@@ -50,7 +50,7 @@ int	check_if_character(int ascii)
 	return (0);
 }
 
-void	sendsignal(int *binary, int pid)
+void	send_signal(int *binary, int pid)
 {
 	int	b;
 
@@ -63,7 +63,7 @@ void	sendsignal(int *binary, int pid)
 			kill(pid, SIGUSR2);
 		b++;
 	}
-	free(binary);
+	free (binary);
 }
 int	main(int ac, char **av)
 {
@@ -78,7 +78,8 @@ int	main(int ac, char **av)
 		while (av[2][i] != '\0')
 		{
 			character = check_if_character(av[2][i]);
-			sendsignal(convert_to_binary(character), pid);
+			//printf("%d\n", character);
+			send_signal(convert_to_binary(character), pid);
 			i++;
 		}
 	}
