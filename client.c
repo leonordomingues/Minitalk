@@ -32,9 +32,10 @@ int	*convert_to_binary(int ascii)
 
 	b = 7;
 	binary = malloc (sizeof(int) * 8);
-	while (ascii >= 0)
+	while (ascii > 0)
 	{
 		binary[b] = ascii % 2;
+		//printf("%d\n", ascii);
 		ascii /= 2;
 		b--;
 	}
@@ -58,9 +59,17 @@ void	send_signal(int *binary, int pid)
 	while (b < 8)
 	{
 		if (binary[b] == 0)
+		{	
 			kill(pid, SIGUSR1);
+			usleep(100);
+			//printf("0\n");
+		}
 		else if (binary[b] == 1)
+		{
 			kill(pid, SIGUSR2);
+			usleep(100);
+			//printf("1\n");
+		}
 		b++;
 	}
 	free (binary);
@@ -78,7 +87,7 @@ int	main(int ac, char **av)
 		while (av[2][i] != '\0')
 		{
 			character = check_if_character(av[2][i]);
-			//printf("%d\n", character);
+		//	printf("%d\n", character);
 			send_signal(convert_to_binary(character), pid);
 			i++;
 		}
