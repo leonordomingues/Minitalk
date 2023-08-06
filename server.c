@@ -5,25 +5,22 @@ int	g = 0;
 int	reconvert_to_int(char *binary)
 {
 	int	power;
-	int	temp;
+	int	i;
 	int	ascii;
 	int	n;
 
 	power = 0;
-	temp = 0;
 	ascii = 0;
 	while (binary[power] != '\0' && power < 8)
 	{
-		if (binary[power] == '1' && power == 0)
-			ascii = 1;
-		else if (binary[power] == '1')
+		if (binary[power] == '1')
 		{
-			n = 2;
-			temp = power;
-			while (temp > 1)
+			n = 1;
+			i = 0;
+			while (i < power)
 			{
-				n = n * 2;
-				temp--;
+				n *= 2;
+				i++;
 			}
 			ascii += n;
 		}
